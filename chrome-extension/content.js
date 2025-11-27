@@ -64,12 +64,16 @@ function lockScreen() {
 
 function checkAnswer() {
     const answer = document.getElementById('insta-focus-input').value;
+    const box = document.getElementById('insta-focus-box');
+    
     if (answer === "40") {
         document.getElementById('insta-focus-overlay').remove();
         document.body.classList.remove('insta-locked');
-        // Reset timer
         chrome.storage.local.set({ startTime: Date.now() });
     } else {
-        document.getElementById('error-msg').style.display = 'block';
+        const errorMsg = document.getElementById('error-msg');
+        errorMsg.style.display = 'block';
+        box.classList.add('shake');
+        setTimeout(() => box.classList.remove('shake'), 300);
     }
 }
