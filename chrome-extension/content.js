@@ -1,78 +1,75 @@
-const TIME_LIMIT = 30 * 1000; // 30 seconds
-const CHECK_INTERVAL = 1000; // Check every second
+// Check logic every second
+setInterval(checkTime, 1000);
 
-// 1. Initialize or Retrieve Timer
-function initTimer() {
-    chrome.storage.local.get(['startTime'], (result) => {
-        if (!result.startTime) {
-            // No time saved? Set it to NOW.
-            chrome.storage.local.set({ startTime: Date.now() });
+function checkTime() {
+    // 1. Get the list of rules from storage
+    chrome.storage.local.get(['rules', 'startTime', 'activeSite'], (data) => {
+        const rules = data.rules || [];
+        const currentUrl = window.location.hostname; // e.g., "www.reddit.com"
+
+        // 2. Find if the current site matches any rule
+        // We use 'includes' so "reddit" matches "old.reddit.com" and "www.reddit.com"
+        const activeRule = rules.find(rule => currentUrl.includes(rule.site));
+
+        if (activeRule) {
+            // We found a rule for this site!
+            handleTimer(activeRule, data);
         }
     });
 }
 
-// 2. The Loop: Check time every second
-setInterval(() => {
-    chrome.storage.local.get(['startTime'], (result) => {
-        if (result.startTime) {
-            const timeElapsed = Date.now() - result.startTime;
-            
-            // If time is up AND the block isn't already there
-            if (timeElapsed > TIME_LIMIT && !document.getElementById('insta-focus-overlay')) {
-                lockScreen();
-            }
+function handleTimer(rule, data) {
+    const now = Date.now();
+    const timeLimitMs = rule.time * 60 * 1000;
+
+    // Check if we just switched to this site or if it's a new session
+    // We store 'activeSite' to track if user switched tabs
+    if (data.activeSite !== rule.site) {
+        chrome.storage.local.set({ 
+            startTime: now,
+            activeSite: rule.site 
+        });
+        return; 
+    }
+
+    if (data.startTime) {
+        const elapsed = now - data.startTime;
+        
+        // If time is up AND overlay isn't there yet
+        if (elapsed > timeLimitMs && !document.getElementById('insta-focus-overlay')) {
+            lockScreen();
         }
-    });
-}, CHECK_INTERVAL);
+    }
+}
 
-// 3. Lock the Screen
+// --- STANDARD LOCK SCREEN CODE BELOW (SAME AS BEFORE) ---
+
 function lockScreen() {
-    // A. Stop Scrolling
     document.body.classList.add('insta-locked');
-
-    // B. Inject the HTML Overlay
     const overlay = document.createElement('div');
     overlay.id = 'insta-focus-overlay';
     overlay.innerHTML = `
         <div id="insta-focus-box">
             <h2>Time's Up!</h2>
-            <p>To continue scrolling, answer this:</p>
-            <p><strong>What is 15 + 7?</strong></p>
-            <input type="number" id="insta-focus-input" placeholder="Answer..." autocomplete="off">
+            <p>Answer to unlock:</p>
+            <p><strong>What is 5 x 8?</strong></p>
+            <input type="number" id="insta-focus-input" autocomplete="off">
             <button id="insta-focus-btn">Unlock</button>
-            <p id="error-msg" style="color:red; display:none; margin-top:10px;">Wrong answer!</p>
+            <p id="error-msg" style="color:red; display:none; margin-top:10px;">Wrong!</p>
         </div>
     `;
     document.body.appendChild(overlay);
-
-    // C. Add Click Listener to Button
     document.getElementById('insta-focus-btn').addEventListener('click', checkAnswer);
 }
 
-// 4. Check Answer
 function checkAnswer() {
     const answer = document.getElementById('insta-focus-input').value;
-    
-    // Simple validation (15 + 7 = 22)
-    if (answer === "22") {
-        unlockScreen();
+    if (answer === "40") {
+        document.getElementById('insta-focus-overlay').remove();
+        document.body.classList.remove('insta-locked');
+        // Reset timer
+        chrome.storage.local.set({ startTime: Date.now() });
     } else {
         document.getElementById('error-msg').style.display = 'block';
     }
 }
-
-// 5. Unlock and Reset
-function unlockScreen() {
-    // Remove the overlay
-    const overlay = document.getElementById('insta-focus-overlay');
-    if (overlay) overlay.remove();
-
-    // Restore scrolling
-    document.body.classList.remove('insta-locked');
-
-    // Reset the timer in storage to NOW
-    chrome.storage.local.set({ startTime: Date.now() });
-}
-
-// Start the script
-initTimer();
