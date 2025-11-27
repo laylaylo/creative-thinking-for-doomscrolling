@@ -1,4 +1,4 @@
-const TIME_LIMIT = 5 * 1000; // 5 seconds (temporarily reduced for testing)
+const TIME_LIMIT = 30 * 1000; // 30 seconds
 const CHECK_INTERVAL = 1000; // Check every second
 
 // ============================================================================
