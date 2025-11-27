@@ -1,4 +1,4 @@
-const TIME_LIMIT = 30 * 1000; // 30 seconds
+const TIME_LIMIT = 5 * 1000; // 5 seconds (temporarily reduced for testing)
 const CHECK_INTERVAL = 1000; // Check every second
 
 // ============================================================================
@@ -24,11 +24,14 @@ const ACTIVITY_TYPES = [
 
 // Drawing prompts - can be expanded by team members
 const DRAWING_PROMPTS = [
-    "Take 30 seconds and draw a flower",
-    "Take 30 seconds and draw a tree",
-    "Take 30 seconds and draw a house",
-    "Take 30 seconds and draw a cat",
-    "Take 30 seconds and draw a sun"
+    "Take a deep breath and draw something beautiful",
+    "Pause for a moment and draw what brings you peace",
+    "Take 30 seconds to draw something that makes you smile",
+    "Draw a memory that brings you joy",
+    "Create something that represents calm",
+    "Draw what gratitude looks like to you",
+    "Sketch a moment of serenity",
+    "Draw something that inspires you"
 ];
 
 // ============================================================================
