@@ -1,4 +1,4 @@
-# Focus Master - Installation Guide
+# Installation Guide
 
 ## 🔵 For Google Chrome (and Edge/Brave)
 
