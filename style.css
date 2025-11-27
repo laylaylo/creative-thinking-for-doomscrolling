@@ -15,7 +15,7 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* The Quiz Box */
+/* The Activity Box (used by both quiz and drawing) */
 #insta-focus-box {
     background: #262626;
     padding: 30px;
@@ -25,6 +25,63 @@
     width: 300px;
 }
 
+/* Drawing Activity Specific Styles */
+#insta-focus-box.drawing-activity {
+    width: auto;
+    max-width: 600px;
+    min-width: 500px;
+}
+
+#drawing-prompt {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 15px 0;
+    color: #ffffff;
+}
+
+#timer-display {
+    margin: 10px 0 20px 0;
+    font-size: 16px;
+    color: #b0b0b0;
+}
+
+#timer-seconds {
+    font-weight: bold;
+    color: #0095f6;
+}
+
+#drawing-canvas {
+    border: 2px solid #363636;
+    border-radius: 8px;
+    background-color: #ffffff;
+    cursor: crosshair;
+    display: block;
+    margin: 0 auto;
+    touch-action: none; /* Prevent scrolling while drawing */
+}
+
+.canvas-controls {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#clear-canvas-btn {
+    padding: 8px 16px;
+    background-color: #363636;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#clear-canvas-btn:hover {
+    background-color: #404040;
+}
+
+/* Quiz Activity Styles */
 #insta-focus-input {
     margin-top: 15px;
     padding: 10px;
@@ -33,7 +90,8 @@
     border: none;
 }
 
-#insta-focus-btn {
+#insta-focus-btn,
+#resume-btn {
     margin-top: 15px;
     padding: 10px 20px;
     background-color: #0095f6; /* Instagram Blue */
@@ -44,7 +102,8 @@
     font-weight: bold;
 }
 
-#insta-focus-btn:hover {
+#insta-focus-btn:hover,
+#resume-btn:hover {
     background-color: #0074cc;
 }
 
