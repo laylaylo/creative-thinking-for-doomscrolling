@@ -149,6 +149,23 @@
     transform: translateY(0);
 }
 
+#insta-focus-btn:disabled {
+    background: linear-gradient(135deg, #9e9e9e 0%, #757575 100%);
+    color: white;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+#insta-focus-btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+#insta-focus-btn:disabled::before {
+    display: none;
+}
+
 #error-msg {
     color: #ff6b6b !important;
     font-weight: 600;
