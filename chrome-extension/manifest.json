@@ -1,19 +1,22 @@
 {
   "manifest_version": 3,
-  "name": "Flow Breaker",
-  "version": "2.0",
-  "description": "Set different time limits for different websites.",
+  "name": "Focus Master Pro",
+  "version": "3.0",
   "permissions": ["storage"],
   "host_permissions": ["<all_urls>"],
-  "options_ui": {
-    "page": "options.html",
-    "open_in_tab": true
-  },
+  "options_ui": { "page": "options.html", "open_in_tab": true },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "css": ["style.css"]
+      "css": ["style.css"],
+      "js": [
+        "prompts/math.js",
+        "prompts/philosophy.js",
+        "prompts/tictactoe.js",
+        "utils/ui.js",
+        "utils/timer.js",
+        "main.js"
+      ]
     }
   ]
 }

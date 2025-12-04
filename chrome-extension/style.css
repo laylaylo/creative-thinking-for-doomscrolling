@@ -166,3 +166,88 @@ body.insta-locked {
     overflow: hidden !important;
     height: 100vh !important;
 }
+
+/* --- NEW ADDITIONS FOR MENU & TASKS --- */
+
+/* The Grid for choosing tasks */
+.task-menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* The Selection Buttons (Glass style) */
+.task-menu-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.task-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.task-menu-btn h3 { margin: 0 0 5px 0; font-size: 16px; }
+.task-menu-btn span { font-size: 24px; display: block; margin-bottom: 5px; }
+
+/* Textarea style (matching your input style) */
+textarea#insta-focus-input {
+    height: 100px;
+    resize: none;
+    font-family: inherit;
+}
+/* --- TIC-TAC-TOE STYLES --- */
+
+#ttt-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 20px auto;
+    width: 240px;
+}
+
+.ttt-cell {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: white;
+}
+
+.ttt-cell:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+}
+
+.x-move {
+    color: #ffd700; /* Gold for Player */
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.o-move {
+    color: #ff6b6b; /* Red for AI */
+    text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+}
+
+#ttt-status {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 15px;
+    min-height: 24px;
+}
