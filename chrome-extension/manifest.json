@@ -13,12 +13,15 @@
       "matches": ["<all_urls>"],
       "css": ["style.css"],
       "js": [
+        "prompts/drawing.js",
         "prompts/math.js",
         "prompts/philosophy.js",
         "prompts/tictactoe.js",
         "prompts/drawing.js",
         "prompts/reminders.js",
         "prompts/nature.js",
+        "prompts/timedActivity.js",
+        "prompts/twoChoice.js",
         "utils/ui.js",
         "utils/timer.js",
         "main.js"
