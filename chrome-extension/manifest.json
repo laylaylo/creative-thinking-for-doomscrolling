@@ -13,6 +13,7 @@
         "prompts/math.js",
         "prompts/philosophy.js",
         "prompts/tictactoe.js",
+        "prompts/drawing.js",
         "utils/ui.js",
         "utils/timer.js",
         "main.js"
