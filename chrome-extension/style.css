@@ -15,6 +15,10 @@
     color: white;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     animation: fadeIn 0.3s ease-in;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 @keyframes fadeIn {
@@ -31,8 +35,10 @@
     text-align: center;
     border: 2px solid rgba(255, 255, 255, 0.2);
     width: 400px;
+    max-width: 90vw;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     animation: slideUp 0.4s ease-out;
+    box-sizing: border-box;
 }
 
 @keyframes slideUp {
@@ -178,19 +184,141 @@
     border: 1px solid rgba(255, 107, 107, 0.4);
 }
 
-/* Drawing Activity Specific Styles */
+/* Stop scrolling when this class is added to Body */
+body.insta-locked {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
+/* ============================================================================
+   TASK MENU (Prompt Selection)
+   ============================================================================ */
+.task-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+    max-width: 500px;
+}
+
+.task-menu-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.task-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.task-menu-btn h3 {
+    margin: 10px 0 0 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.task-menu-btn span {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* ============================================================================
+   TEXTAREA (Philosophy Prompt)
+   ============================================================================ */
+textarea#insta-focus-input {
+    margin-top: 20px;
+    padding: 15px 20px;
+    width: 85%;
+    min-height: 100px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    font-size: 16px;
+    font-family: inherit;
+    resize: vertical;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+textarea#insta-focus-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+textarea#insta-focus-input:focus {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================================================
+   DRAWING ACTIVITY STYLES
+   ============================================================================ */
 #insta-focus-box.drawing-activity {
     width: auto;
-    max-width: 600px;
-    min-width: 500px;
+    max-width: 90vw;
+    min-width: 400px;
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 30px 25px;
+}
+
+@media (max-width: 600px) {
+    #insta-focus-box.drawing-activity {
+        min-width: 90vw;
+        padding: 20px 15px;
+    }
+}
+
+#insta-focus-box.drawing-activity::-webkit-scrollbar {
+    width: 8px;
+}
+
+#insta-focus-box.drawing-activity::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+#insta-focus-box.drawing-activity::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+#drawing-prompt {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 15px 0;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.4;
+}
+
+#timer-display {
+    margin: 10px 0 15px 0;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
+#timer-seconds {
+    font-weight: 700;
+    color: #fff;
+    font-size: 20px;
 }
 
 .drawing-tools {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
-    padding: 15px;
+    gap: 12px;
+    margin-bottom: 15px;
+    padding: 12px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -198,35 +326,34 @@
 
 .color-palette {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     justify-content: center;
     flex-wrap: wrap;
 }
 
 .color-option {
-    width: 35px;
-    height: 35px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     cursor: pointer;
     border: 3px solid transparent;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .color-option:hover {
-    transform: scale(1.15);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
 }
 
 .color-option.active {
     border-color: rgba(255, 255, 255, 0.9);
-    transform: scale(1.2);
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.15);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
 .brush-sizes {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     justify-content: center;
     align-items: center;
 }
@@ -236,8 +363,8 @@
     border: 2px solid rgba(255, 255, 255, 0.3);
     color: white;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     cursor: pointer;
     font-size: 12px;
     display: flex;
@@ -249,7 +376,6 @@
 
 .brush-size:hover {
     background: rgba(255, 255, 255, 0.3);
-    border-color: rgba(255, 255, 255, 0.5);
     transform: scale(1.1);
 }
 
@@ -257,66 +383,37 @@
     background: rgba(255, 255, 255, 0.4);
     border-color: rgba(255, 255, 255, 0.8);
     transform: scale(1.15);
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
-.brush-size[data-size="2"] {
-    font-size: 10px;
-}
-
-.brush-size[data-size="4"] {
-    font-size: 14px;
-}
-
-.brush-size[data-size="6"] {
-    font-size: 18px;
-}
-
-.brush-size[data-size="10"] {
-    font-size: 22px;
-}
-
-#drawing-prompt {
-    font-size: 20px;
-    font-weight: 600;
-    margin: 15px 0;
-    color: rgba(255, 255, 255, 0.95);
-    line-height: 1.4;
-}
-
-#timer-display {
-    margin: 15px 0 20px 0;
-    font-size: 18px;
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 500;
-}
-
-#timer-seconds {
-    font-weight: 700;
-    color: #fff;
-    font-size: 24px;
-}
+.brush-size[data-size="2"] { font-size: 10px; }
+.brush-size[data-size="4"] { font-size: 14px; }
+.brush-size[data-size="6"] { font-size: 18px; }
+.brush-size[data-size="10"] { font-size: 22px; }
 
 #drawing-canvas {
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 12px;
     background-color: #ffffff;
     cursor: crosshair;
     display: block;
     margin: 0 auto;
     touch-action: none;
-    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
 }
 
 .canvas-controls {
-    margin-top: 20px;
+    margin-top: 15px;
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 #clear-canvas-btn {
-    padding: 12px 24px;
+    padding: 10px 20px;
     background: rgba(255, 255, 255, 0.2);
     color: white;
     border: 2px solid rgba(255, 255, 255, 0.3);
@@ -329,7 +426,6 @@
 
 #clear-canvas-btn:hover {
     background: rgba(255, 255, 255, 0.3);
-    border-color: rgba(255, 255, 255, 0.5);
     transform: translateY(-2px);
 }
 
@@ -353,51 +449,9 @@
     box-shadow: 0 6px 20px 0 rgba(102, 126, 234, 0.6);
 }
 
-/* Stop scrolling when this class is added to Body */
-body.insta-locked {
-    overflow: hidden !important;
-    height: 100vh !important;
-}
-
-/* --- NEW ADDITIONS FOR MENU & TASKS --- */
-
-/* The Grid for choosing tasks */
-.task-menu-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-/* The Selection Buttons (Glass style) */
-.task-menu-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 15px;
-    border-radius: 12px;
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-}
-
-.task-menu-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.task-menu-btn h3 { margin: 0 0 5px 0; font-size: 16px; }
-.task-menu-btn span { font-size: 24px; display: block; margin-bottom: 5px; }
-
-/* Textarea style (matching your input style) */
-textarea#insta-focus-input {
-    height: 100px;
-    resize: none;
-    font-family: inherit;
-}
-/* --- TIC-TAC-TOE STYLES --- */
-
+/* ============================================================================
+   TIC-TAC-TOE STYLES
+   ============================================================================ */
 #ttt-board {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -428,12 +482,12 @@ textarea#insta-focus-input {
 }
 
 .x-move {
-    color: #ffd700; /* Gold for Player */
+    color: #ffd700;
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 .o-move {
-    color: #ff6b6b; /* Red for AI */
+    color: #ff6b6b;
     text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
 }
 
@@ -442,4 +496,222 @@ textarea#insta-focus-input {
     font-size: 18px;
     margin-top: 15px;
     min-height: 24px;
+}
+
+/* ============================================================================
+   DIARY MODE STYLES
+   ============================================================================ */
+.diary-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+.diary-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+#insta-focus-box.diary-mode {
+    width: 90vw;
+    max-width: 1200px;
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 40px;
+}
+
+.diary-container {
+    width: 100%;
+    max-height: calc(90vh - 120px);
+    margin-top: 20px;
+}
+
+.diary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.diary-header h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(45deg, #fff, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.diary-close {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.diary-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.diary-scroll-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 20px 0;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.diary-scroll-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.diary-scroll-wrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.diary-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.diary-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.diary-entries {
+    display: flex;
+    gap: 20px;
+    padding: 0 20px;
+    min-width: min-content;
+}
+
+.diary-entry-card {
+    min-width: 320px;
+    max-width: 320px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    animation: slideInRight 0.4s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.diary-entry-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.diary-entry-icon {
+    font-size: 24px;
+}
+
+.diary-entry-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex: 1;
+}
+
+.diary-entry-date {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.diary-entry-time {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.diary-entry-prompt {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.4;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border-left: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+.diary-entry-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.diary-drawing-image {
+    max-width: 100%;
+    max-height: 250px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: white;
+    padding: 8px;
+}
+
+.diary-text-response {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 80px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    width: 100%;
+}
+
+.diary-loading,
+.diary-empty {
+    text-align: center;
+    padding: 40px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 18px;
 }

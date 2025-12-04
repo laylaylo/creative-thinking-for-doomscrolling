@@ -1,5 +1,53 @@
 window.FocusPrompts = window.FocusPrompts || {};
 
+// Helper function to save drawings to storage for daily overview
+function saveDrawing(canvas, prompt) {
+    try {
+        // Convert canvas to base64 image
+        const imageData = canvas.toDataURL('image/png');
+        
+        // Get current date in YYYY-MM-DD format
+        const today = new Date();
+        const dateKey = today.toISOString().split('T')[0];
+        
+        // Create entry object
+        const entry = {
+            type: 'drawing',
+            prompt: prompt,
+            image: imageData,
+            timestamp: Date.now(),
+            date: dateKey
+        };
+        
+        // Get existing daily entries
+        chrome.storage.local.get(['dailyEntries'], (result) => {
+            if (chrome.runtime.lastError) {
+                console.error('Error saving drawing:', chrome.runtime.lastError);
+                return;
+            }
+            
+            const dailyEntries = result.dailyEntries || {};
+            
+            // Initialize array for today if it doesn't exist
+            if (!dailyEntries[dateKey]) {
+                dailyEntries[dateKey] = [];
+            }
+            
+            // Add the new entry
+            dailyEntries[dateKey].push(entry);
+            
+            // Save back to storage
+            chrome.storage.local.set({ dailyEntries: dailyEntries }, () => {
+                if (chrome.runtime.lastError) {
+                    console.error('Error saving daily entries:', chrome.runtime.lastError);
+                }
+            });
+        });
+    } catch (error) {
+        console.error('Error saving drawing:', error);
+    }
+}
+
 window.FocusPrompts.Drawing = {
     id: "Drawing",
     name: "Creative Drawing",
@@ -50,7 +98,7 @@ window.FocusPrompts.Drawing = {
                     <button class="brush-size" data-size="10" title="Extra Large">●</button>
                 </div>
             </div>
-            <canvas id="drawing-canvas" width="500" height="400"></canvas>
+            <canvas id="drawing-canvas" width="500" height="400" style="max-width: 100%; height: auto;"></canvas>
             <div class="canvas-controls">
                 <button id="clear-canvas-btn">Clear</button>
             </div>
@@ -189,8 +237,10 @@ window.FocusPrompts.Drawing = {
             }
         }, 1000);
         
-        // Resume button
+        // Resume button - save drawing before unlocking
         resumeBtn.addEventListener('click', () => {
+            // Save the drawing to storage
+            saveDrawing(canvas, prompt);
             window.FocusUI.unlock();
         });
     }
