@@ -4,10 +4,15 @@ window.FocusPrompts.Philosophy = {
     id: "Philosophy",    // <--- ADD THIS LINE
     name: "Reflect",
     icon: "🤔",
-    
+
     questions: [
         "What is your main goal for today?",
-        "Are you doing what you intended to do right now?"
+        "What is your main goal for this week?",
+        "What is your main goal for this year?",
+        "What is your purpose of life?",
+        "If you had one extra free hour today, how would you use it?",
+        "What are your dinner plans for tonight?",
+        "Where do you see yourself in 2 years?"
     ],
 
     render: () => {

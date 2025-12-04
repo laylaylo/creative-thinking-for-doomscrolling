@@ -12,6 +12,10 @@ window.FocusPrompts.TwoChoice = {
             choices: ['Yes, I am', 'No, I\'m slacking'],
         },
         {
+            prompt: 'Are you doing what you intended to do now?',
+            choices: ['Yes, still on track', 'Whoopps'],
+        },
+        {
             prompt: 'Is this task important for your long-term goals?',
             choices: ['Absolutely', 'Not really'],
         },
