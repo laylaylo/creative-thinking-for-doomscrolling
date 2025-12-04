@@ -77,9 +77,12 @@ window.FocusDiary = {
             const allEntries = [];
             
             // Flatten all entries from all dates, sorted by timestamp
+            // Only include drawing and philosophy entries
             Object.keys(dailyEntries).forEach(date => {
                 dailyEntries[date].forEach(entry => {
-                    allEntries.push(entry);
+                    if (entry.type === 'drawing' || entry.type === 'philosophy') {
+                        allEntries.push(entry);
+                    }
                 });
             });
             

@@ -17,13 +17,13 @@
         "prompts/math.js",
         "prompts/philosophy.js",
         "prompts/tictactoe.js",
-        "prompts/drawing.js",
         "prompts/reminders.js",
         "prompts/nature.js",
         "prompts/timedActivity.js",
         "prompts/twoChoice.js",
         "utils/ui.js",
         "utils/timer.js",
+        "utils/diary.js",
         "main.js"
       ],
       "web_accessible_resources": [
