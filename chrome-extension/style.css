@@ -161,6 +161,90 @@
     border: 1px solid rgba(255, 107, 107, 0.4);
 }
 
+/* Drawing Activity Specific Styles */
+#insta-focus-box.drawing-activity {
+    width: auto;
+    max-width: 600px;
+    min-width: 500px;
+}
+
+#drawing-prompt {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 15px 0;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.4;
+}
+
+#timer-display {
+    margin: 15px 0 20px 0;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
+#timer-seconds {
+    font-weight: 700;
+    color: #fff;
+    font-size: 24px;
+}
+
+#drawing-canvas {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    background-color: #ffffff;
+    cursor: crosshair;
+    display: block;
+    margin: 0 auto;
+    touch-action: none;
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2);
+}
+
+.canvas-controls {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#clear-canvas-btn {
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+#clear-canvas-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+#resume-btn {
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px 0 rgba(102, 126, 234, 0.4);
+}
+
+#resume-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px 0 rgba(102, 126, 234, 0.6);
+}
+
 /* Stop scrolling when this class is added to Body */
 body.insta-locked {
     overflow: hidden !important;
