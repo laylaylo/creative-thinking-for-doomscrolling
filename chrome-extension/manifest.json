@@ -4,6 +4,9 @@
   "version": "3.0",
   "permissions": ["storage"],
   "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
   "options_ui": { "page": "options.html", "open_in_tab": true },
   "content_scripts": [
     {
@@ -14,9 +17,17 @@
         "prompts/philosophy.js",
         "prompts/tictactoe.js",
         "prompts/drawing.js",
+        "prompts/reminders.js",
+        "prompts/nature.js",
         "utils/ui.js",
         "utils/timer.js",
         "main.js"
+      ],
+      "web_accessible_resources": [
+        {
+          "resources": ["zen.html", "assets/*"],
+          "matches": ["<all_urls>"]
+        }
       ]
     }
   ]
