@@ -21,6 +21,7 @@
         "prompts/nature.js",
         "prompts/timedActivity.js",
         "prompts/twoChoice.js",
+        "prompts/health.js",
         "utils/ui.js",
         "utils/timer.js",
         "utils/diary.js",
