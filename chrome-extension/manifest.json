@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Focus Master Pro",
-  "version": "3.0",
+  "name": "Breaker",
+  "version": "1.0",
   "permissions": ["storage"],
   "host_permissions": ["<all_urls>"],
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["background.js"]
   },
   "options_ui": { "page": "options.html", "open_in_tab": true },
   "content_scripts": [
