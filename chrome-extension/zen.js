@@ -3,17 +3,12 @@ const scenes = [
     {
         name: "Forest Rain",
         bg: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&w=1600&q=80",
-        audio: "https://cdn.pixabay.com/download/audio/2022/02/16/audio_d0c6ff1bc9.mp3"
+        audio: "assets/rain.mp3"
     },
     {
         name: "Ocean Sunset",
         bg: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&w=1600&q=80",
-        audio: "https://cdn.pixabay.com/download/audio/2021/08/09/audio_03d6990a36.mp3"
-    },
-    {
-        name: "Campfire",
-        bg: "https://images.unsplash.com/photo-1527259216948-b0c66d6fc31f?ixlib=rb-4.0.3&w=1600&q=80",
-        audio: "https://cdn.pixabay.com/download/audio/2022/01/18/audio_8db1f115a3.mp3"
+        audio: "assets/ocean.mp3"
     }
 ];
 

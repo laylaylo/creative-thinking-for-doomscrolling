@@ -26,13 +26,14 @@
         "utils/timer.js",
         "utils/diary.js",
         "main.js"
-      ],
-      "web_accessible_resources": [
-        {
-          "resources": ["zen.html", "assets/*"],
-          "matches": ["<all_urls>"]
-        }
       ]
+    }
+  ], 
+
+  "web_accessible_resources": [
+    {
+      "resources": ["zen.html", "assets/*"],
+      "matches": ["<all_urls>"]
     }
   ]
 }
